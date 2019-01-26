@@ -5,4 +5,5 @@
 - [ ] detect raised heart rate 
 - [ ] detect tilt
 - [ ] output display-reaction!
-- [ ] make it wearable 
+- [ ] make it wearable
+- [ ] come up with a name  
