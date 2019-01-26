@@ -1,15 +1,15 @@
 # HELPFUL LINKS
 
-**video**
+##video
 
-## HEART MONITOR
+** HEART MONITOR **
 - https://www.youtube.com/watch?v=BPHinoRZOK4
 - https://www.youtube.com/watch?v=xa_2W-Oh-ls
 
-## TILT SWITCH
+** TILT SWITCH **
 
-**webpages**
+##webpages
 
-## HEART MONITOR
+** HEART MONITOR **
 
-## TILT SWITCH
+** TILT SWITCH **
