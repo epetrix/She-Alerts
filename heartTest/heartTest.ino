@@ -14,7 +14,7 @@ void loop () {
   static double oldValue = 0;
   static double oldChange = 0;
   int rawValue = analogRead (sensorPin);
-  double value = alpha * oldValue + (1 - alpha) * rawValue;
+  double value = alpha * rawValue + (1 - alpha) * oldValue;
   Serial.print (rawValue);
   Serial.print (",");
   Serial.println (value);
