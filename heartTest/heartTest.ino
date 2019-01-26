@@ -21,6 +21,7 @@ void loop () {
   oldValue = value;
   delay (period);
 }
+
 /*
 int ledc = 10;  
 int sensorPin = 0;
