@@ -13,6 +13,7 @@
 
 ** HEART MONITOR **
 - https://forum.arduino.cc/index.php?topic=209140.15
+- https://www.hackster.io/Johan_Ha/from-ky-039-to-heart-rate-0abfca
 
 ** TILT SWITCH **
 

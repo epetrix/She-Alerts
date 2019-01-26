@@ -1,4 +1,3 @@
-// Pulse Monitor Test Script
 int ledPin = 13;
 int sensorPin = 0;
 double alpha = 0.75;
@@ -21,5 +20,3 @@ void loop () {
   oldValue = value;
   delay (period);
 }
-
-
