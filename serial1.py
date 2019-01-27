@@ -4,14 +4,10 @@ import time
 import smtplib
 from keys import *
 
-#function used to send an email in order to alert of errors found
-#err is the specified error message based on the issue
-#returns nothing, either sends email or doesn't.
-def sendEmail():
-    TO = 'vmc12@pitt.edu'
-    SUBJECT = 'Patient Alert'
-    TEXT = 'Your patient may have fallen down :('
-    BODY = '\r\n'.join(['To: %s' % TO,
+#function used to send an email with proper json format
+#returns nothing, either sends email or doesn't. prints result
+def sendEmail(TO, SUBJECT, TEXT):
+    BODY = '\r\n'.join(['To: %s' % ,
                     'From: %s' % gmail_sender,
                     'Subject: %s' % SUBJECT,
                     '', TEXT])
@@ -21,6 +17,18 @@ def sendEmail():
     except:
         print('error sending mail')
 
+def alertEMS():
+    to = 'vmc12@pitt.edu'
+    sub = 'Fallen Elderly Alert'
+    text = 'Elder patient registered to She Alerts may need assistance from a fall at 135 N Bellefield Ave.'
+    sendEmail(to, sub, text)
+    
+def alertPatientCare():
+    to = 'svw6@pitt.edu'
+    sub = 'Fallen Patient Alert'
+    text = 'Your patient registered to She Alerts may need assistance from a fall at her home.'
+    sendEmail(to, sub, text)
+    
 #authentication for gmail access
 gmail_sender = 'sheAlerts@gmail.com'
 gmail_passwd = PASSWD
@@ -35,6 +43,7 @@ while(1):
     signal = board.read().decode("utf-8")
     print(signal)
     if (signal == '1'):
-        sendEmail()
+        alertEMS()
+        alertPatientCare()
     time.sleep(1)
 board.close()
