@@ -4,8 +4,11 @@ int tiltSensor = 3;
 int heartSensor = 0;
 
 void setup() {
-  // put your setup code here, to run once:
-
+  pinMode (led, OUTPUT);
+  pinMode (button, INPUT);
+  pinMode (tiltSensor, INPUT);
+  pinMode (heartSensor, INPUT);
+  Serial.begin(9600);
 }
 
 void loop() {
