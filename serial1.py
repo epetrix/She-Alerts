@@ -7,7 +7,7 @@ from keys import *
 #function used to send an email with proper json format
 #returns nothing, either sends email or doesn't. prints result
 def sendEmail(TO, SUBJECT, TEXT):
-    BODY = '\r\n'.join(['To: %s' % ,
+    BODY = '\r\n'.join(['To: %s' % TO,
                     'From: %s' % gmail_sender,
                     'Subject: %s' % SUBJECT,
                     '', TEXT])
@@ -36,7 +36,7 @@ server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
 server.ehlo()
 server.login(gmail_sender, gmail_passwd)
 
-board = serial.Serial("/dev/tty.usbmodem1411", 9600)
+board = serial.Serial("/dev/tty.usbmodem1421", 9600)
 
 time.sleep(5)
 while(1):
@@ -45,5 +45,4 @@ while(1):
     if (signal == '1'):
         alertEMS()
         alertPatientCare()
-    time.sleep(1)
 board.close()

@@ -68,6 +68,19 @@ void loop() {
     reads[ptr] = reader;
     last = sum / samp_size; 
 
+    if (ledOn) {
+      currTime = millis();
+      if (currTime - startTiltTime > 10000) { //not trigger again until 10 min passed
+        digitalWrite(led, LOW);
+        ledOn = false;
+      }
+    } else if (buttonPressed) { //allow user to signal they're ok and wait 10 min to check again
+      currTime = millis();
+      if (currTime - startTiltTime > 10000) {
+        buttonPressed = false;
+      }
+    }
+
     if (last > before) {
       rise_count++; 
       if(!rising && rise_count > rise_thresh) {
@@ -77,6 +90,7 @@ void loop() {
 
         print_value = 60000. / (0.4 * first + 0.3 * second + 0.3 * third); 
         isTilt = digitalRead (tiltSensor);
+
         
         //IF HEART RATE IS HIGH!!! && YOU'VE FALLEN!!!
         if(print_value > 100 && isTilt == HIGH) {
@@ -109,9 +123,9 @@ void loop() {
                 }
               }
             if (buttonPressed) {
-              Serial.print(char('0'));
+              Serial.println(char('0'));
             } else {
-              Serial.print(char('1'));
+              Serial.println(char('1'));
             }
           } else {
             digitalWrite(led, LOW);
