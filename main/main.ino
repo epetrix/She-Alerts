@@ -4,9 +4,11 @@ int tiltSensor = 3;
 int heartSensor = 0;
 
 int isTilt = LOW;
-int ledOn = 0;
 
-unsigned long startTime;
+bool ledOn = false;
+bool buttonPressed = false;
+
+unsigned long startTiltTime;
 
 void setup() {
   pinMode (led, OUTPUT);
@@ -18,17 +20,29 @@ void setup() {
 
 void loop() {
   isTilt = digitalRead (tiltSensor);
-  if (ledOn == 1) {
-    if (millis() - startTime > 10000) {
+  
+  if (ledOn) {
+    if (millis() - startTiltTime > 10000) { //not trigger >1x per 10 min
       digitalWrite(led, LOW);
-      ledOn = 0;
+      ledOn = false;
+    }
+  } else if (buttonPressed) {
+    if (millis() - startTiltTime > 10000) { //not trigger >1x per 10 min
+      buttonPressed = false;
     }
   } else {
     if (isTilt == HIGH) {
       digitalWrite(led, HIGH);
-      ledOn = 1;
-      startTime = millis();
-      delay (5000); //wait for 5 seconds
+      ledOn = true;
+      startTiltTime = millis();
+      while (millis() - startTiltTime < 10000) { //wait 10 sec
+        if (digitalRead(button) == LOW) {
+          ledOn = false;
+          buttonPressed = true;
+          digitalWrite(led, LOW);
+          break;
+        }
+      }
     } else {
       digitalWrite(led, LOW);
     }
