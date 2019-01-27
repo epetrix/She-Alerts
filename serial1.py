@@ -28,15 +28,13 @@ server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
 server.ehlo()
 server.login(gmail_sender, gmail_passwd)
 
-board = serial.Serial("/dev/tty.usbmodem1421", 9600)
+board = serial.Serial("/dev/tty.usbmodem1411", 9600)
 
 time.sleep(5)
-i = 1
-while(i < 10):
+while(1):
     signal = board.read().decode("utf-8")
     print(signal)
     if (signal == '1'):
         sendEmail()
     time.sleep(1)
-    i = i + 1
 board.close()

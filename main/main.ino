@@ -46,6 +46,11 @@ void loop() {
           break;
         }
       }
+      if (buttonPressed) {
+         Serial.print(char('0'));
+      } else {
+         Serial.print(char('1'));
+      }
     } else {
       digitalWrite(led, LOW);
     }
