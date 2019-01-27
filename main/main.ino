@@ -94,9 +94,9 @@ void loop() {
         
         //IF HEART RATE IS HIGH!!! && YOU'VE FALLEN!!!
         if(print_value > 100 && isTilt == HIGH) {
-          Serial.print("BPM \t"); 
-          Serial.print(print_value); 
-          Serial.println(" "); 
+          Serial.print("BPM \t"); ////////////////////
+          Serial.print(print_value); /////////////////
+          Serial.println(" "); ///////////////////////
 
           if (ledOn) {
             currTime = millis();
