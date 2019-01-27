@@ -9,6 +9,7 @@ bool ledOn = false;
 bool buttonPressed = false;
 
 unsigned long startTiltTime;
+unsigned long currTime;
 
 void setup() {
   pinMode (led, OUTPUT);
@@ -22,12 +23,14 @@ void loop() {
   isTilt = digitalRead (tiltSensor);
   
   if (ledOn) {
-    if (millis() - startTiltTime > 10000) { //not trigger >1x per 10 min
+    currTime = millis();
+    if (currTime - startTiltTime > 10000) { //not trigger again until 10 min passed
       digitalWrite(led, LOW);
       ledOn = false;
     }
-  } else if (buttonPressed) {
-    if (millis() - startTiltTime > 10000) { //not trigger >1x per 10 min
+  } else if (buttonPressed) { //allow user to signal they're ok and wait 10 min to check again
+    currTime = millis();
+    if (currTime - startTiltTime > 10000) {
       buttonPressed = false;
     }
   } else {
